@@ -1,5 +1,4 @@
 import { SearchParams } from 'nuqs/server';
-import CollectorDasboard from '@/features/collector/components/collector-dashboard';
 import PageContainer from '@/components/layout/page-container';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
@@ -9,7 +8,7 @@ type pageProps = {
 };
 
 export const metadata = {
-  title: 'Collector : dashboard'
+  title: 'Admin : dashboard'
 };
 
 export default async function Page({ searchParams }: pageProps) {
@@ -17,13 +16,9 @@ export default async function Page({ searchParams }: pageProps) {
     <PageContainer scrollable={true}>
       <div className='flex flex-1 flex-col space-y-4'>
         <div className='flex items-start justify-between'>
-          <Heading
-            title='Previous Events'
-            description='List of Previous Events'
-          />
+          <Heading title='Admin' description='Dashbaord Pannel' />
         </div>
         <Separator />
-        <CollectorDasboard />
       </div>
     </PageContainer>
   );

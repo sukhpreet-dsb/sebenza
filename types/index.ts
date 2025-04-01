@@ -30,6 +30,12 @@ export interface FooterItem {
   }[];
 }
 
+export interface SummaryCardProps {
+  title: string;
+  value: string;
+  description: string;
+}
+
 export interface GarbageList {
   id: number;
   status: string;
