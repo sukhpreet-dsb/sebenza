@@ -55,6 +55,7 @@ import {
 } from '@/components/ui/pagination';
 import { GarbageList } from 'types';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import CollectionDetailsDialog from './collection-detail-dialog';
 
 // Mock data for demonstration
 const mockEvents = [
@@ -365,7 +366,11 @@ const CollectorDashboard = () => {
                       </TableCell>
                       <TableCell>{getStatusBadge(event.status)}</TableCell>
                       <TableCell>
-                        <Dialog>
+                        <CollectionDetailsDialog
+                          event={event}
+                          getStatusBadge={getStatusBadge}
+                        />
+                        {/* <Dialog>
                           <DialogTrigger asChild>
                             <Button
                               size='sm'
@@ -449,7 +454,7 @@ const CollectorDashboard = () => {
                               </DialogFooter>
                             </DialogContent>
                           )}
-                        </Dialog>
+                        </Dialog> */}
                       </TableCell>
                     </TableRow>
                   ))

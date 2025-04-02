@@ -198,12 +198,13 @@ const Profile = () => {
                         <Button
                           type='button'
                           variant='outline'
+                          className='cursor-pointer'
                           onClick={handleCancel}
                         >
                           <X className='mr-2 h-4 w-4' />
                           Cancel
                         </Button>
-                        <Button type='submit'>
+                        <Button type='submit' className='cursor-pointer'>
                           <Check className='mr-2 h-4 w-4' />
                           Save Changes
                         </Button>

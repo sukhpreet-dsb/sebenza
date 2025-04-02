@@ -53,6 +53,11 @@ export interface GarbageList {
   notes: string;
 }
 
+export interface CollectedItem {
+  type: string;
+  weight: number;
+}
+
 export type MainNavItem = NavItemWithOptionalChildren;
 
 export type SidebarNavItem = NavItemWithChildren;

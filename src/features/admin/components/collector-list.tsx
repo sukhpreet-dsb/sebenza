@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import CollectorForm from './collector-form';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Mock collector data
 const MOCK_COLLECTORS = [
@@ -89,6 +90,7 @@ const CollectorsList = ({
   const [selectedCollector, setSelectedCollector] = useState(null);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showEditDialog, setShowEditDialog] = useState(false);
+  const isMobile = useIsMobile();
 
   const displayedCollectors = limit ? collectors.slice(0, limit) : collectors;
 
@@ -115,7 +117,7 @@ const CollectorsList = ({
     if (selectedCollector) {
       setCollectors(collectors.filter((c) => c.id !== selectedCollector.id));
       toast('Collector Deleted', {
-        description: `${selectedZone.name} has been removed`,
+        description: `${selectedCollector.name} has been removed`,
         action: {
           label: 'Undo',
           onClick: () => console.log('Undo')
@@ -160,62 +162,64 @@ const CollectorsList = ({
 
   return (
     <>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Zone</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Collections</TableHead>
-            {showActions && (
-              <TableHead className='text-right'>Actions</TableHead>
-            )}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {displayedCollectors.map((collector) => (
-            <TableRow key={collector.id}>
-              <TableCell className='font-medium'>
-                <div>{collector.name}</div>
-                <div className='text-muted-foreground text-xs'>
-                  {collector.email}
-                </div>
-              </TableCell>
-              <TableCell>
-                <div className='flex items-center gap-1'>
-                  <MapPin className='text-muted-foreground h-3 w-3' />
-                  {collector.zone}
-                </div>
-              </TableCell>
-              <TableCell>{getStatusBadge(collector.status)}</TableCell>
-              <TableCell>{collector.collectionsCompleted}</TableCell>
+      <div className='overflow-x-auto'>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Zone</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Collections</TableHead>
               {showActions && (
-                <TableCell className='text-right'>
-                  <div className='flex justify-end gap-2'>
-                    <Button
-                      variant='ghost'
-                      size='sm'
-                      onClick={() => handleEdit(collector)}
-                    >
-                      <Edit className='h-4 w-4' />
-                    </Button>
-                    <Button
-                      variant='ghost'
-                      size='sm'
-                      onClick={() => handleDelete(collector)}
-                    >
-                      <Trash2 className='text-destructive h-4 w-4' />
-                    </Button>
-                  </div>
-                </TableCell>
+                <TableHead className='text-right'>Actions</TableHead>
               )}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {displayedCollectors.map((collector) => (
+              <TableRow key={collector.id}>
+                <TableCell className='font-medium'>
+                  <div>{collector.name}</div>
+                  <div className='text-muted-foreground text-xs'>
+                    {collector.email}
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className='flex items-center gap-1'>
+                    <MapPin className='text-muted-foreground h-3 w-3' />
+                    {collector.zone}
+                  </div>
+                </TableCell>
+                <TableCell>{getStatusBadge(collector.status)}</TableCell>
+                <TableCell>{collector.collectionsCompleted}</TableCell>
+                {showActions && (
+                  <TableCell className='text-right'>
+                    <div className='flex justify-end gap-2'>
+                      <Button
+                        variant='ghost'
+                        size='sm'
+                        onClick={() => handleEdit(collector)}
+                      >
+                        <Edit className='h-4 w-4' />
+                      </Button>
+                      <Button
+                        variant='ghost'
+                        size='sm'
+                        onClick={() => handleDelete(collector)}
+                      >
+                        <Trash2 className='text-destructive h-4 w-4' />
+                      </Button>
+                    </div>
+                  </TableCell>
+                )}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
 
       <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-        <DialogContent>
+        <DialogContent className='max-w-[90vw] p-4 sm:max-w-[425px] sm:p-6'>
           <DialogHeader>
             <DialogTitle>Delete Collector</DialogTitle>
             <DialogDescription>
@@ -223,14 +227,19 @@ const CollectorsList = ({
               action cannot be undone.
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter>
+          <DialogFooter className='mt-4 flex-col gap-2 sm:flex-row'>
             <Button
               variant='outline'
               onClick={() => setShowDeleteDialog(false)}
+              className='w-full sm:w-auto'
             >
               Cancel
             </Button>
-            <Button variant='destructive' onClick={confirmDelete}>
+            <Button
+              variant='destructive'
+              onClick={confirmDelete}
+              className='w-full sm:w-auto'
+            >
               Delete
             </Button>
           </DialogFooter>
@@ -238,7 +247,7 @@ const CollectorsList = ({
       </Dialog>
 
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-        <DialogContent className='my-6 sm:max-w-md md:max-w-lg'>
+        <DialogContent className='h-auto max-h-[90vh] max-w-[95vw] overflow-y-auto p-4 sm:max-w-[500px] sm:p-6 md:max-w-[650px] lg:max-w-[700px]'>
           <DialogHeader>
             <DialogTitle>Edit Collector</DialogTitle>
             <DialogDescription>

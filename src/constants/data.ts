@@ -13,54 +13,33 @@ export type Product = {
 
 //Info: The following data is used for the sidebar navigation and Cmd K bar.
 export const navItems: NavItem[] = [
-  {
-    title: 'Dashboard',
-    url: '/dashboard/overview',
-    icon: 'dashboard',
-    isActive: false,
-    shortcut: ['d', 'd'],
-    items: [] // Empty array as there are no child items for Dashboard
-  },
+  // {
+  //   title: 'Dashboard',
+  //   url: '/dashboard/overview',
+  //   icon: 'dashboard',
+  //   isActive: false,
+  //   shortcut: ['d', 'd'],
+  //   items: []
+  // },
   {
     title: 'Admin Dashboard',
     url: '/dashboard/admin',
-    icon: 'add',
+    icon: 'dashboard',
     isActive: false,
     shortcut: ['d', 'd'],
-    items: [] // Empty array as there are no child items for Dashboard
-  },
-  {
-    title: 'Product',
-    url: '/dashboard/product',
-    icon: 'product',
-    shortcut: ['p', 'p'],
-    isActive: false,
-    items: [] // No child items
+    items: []
   },
   // {
-  //   title: 'Account',
-  //   url: '#', // Placeholder as there is no direct link for the parent
-  //   icon: 'billing',
-  //   isActive: true,
-
-  //   items: [
-  //     {
-  //       title: 'Profile',
-  //       url: '/dashboard/profile',
-  //       icon: 'userPen',
-  //       shortcut: ['m', 'm']
-  //     },
-  //     {
-  //       title: 'Login',
-  //       shortcut: ['l', 'l'],
-  //       url: '/',
-  //       icon: 'login'
-  //     }
-  //   ]
-  // }
+  //   title: 'Product',
+  //   url: '/dashboard/product',
+  //   icon: 'product',
+  //   shortcut: ['p', 'p'],
+  //   isActive: false,
+  //   items: [] // No child items
+  // },
   {
     title: 'User',
-    url: '/dashboard/user', // Placeholder as there is no direct link for the parent
+    url: '/dashboard/user',
     icon: 'user',
     isActive: true,
     items: [
@@ -80,7 +59,7 @@ export const navItems: NavItem[] = [
   },
   {
     title: 'School',
-    url: '/dashboard/school', // Placeholder as there is no direct link for the parent
+    url: '/dashboard/school',
     icon: 'school',
     isActive: true,
     items: [
@@ -104,7 +83,7 @@ export const navItems: NavItem[] = [
     icon: 'collector',
     shortcut: ['p', 'p'],
     isActive: false,
-    items: [] // No child items
+    items: []
   }
 ];
 

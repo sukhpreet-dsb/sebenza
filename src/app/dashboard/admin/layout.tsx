@@ -85,7 +85,7 @@ export default function OverViewLayout({
           />
         </div>
 
-        <div className='mt-8'>
+        <div className='my-8'>
           <Tabs
             value={activeTab}
             onValueChange={setActiveTab}
@@ -94,28 +94,31 @@ export default function OverViewLayout({
             <TabsList className='mb-8 grid h-full w-full grid-cols-12 gap-2'>
               <TabsTrigger
                 value='dashboard'
-                className='col-span-6 md:col-span-3'
+                className='col-span-6 md:col-span-2'
               >
                 Dashboard
               </TabsTrigger>
               <TabsTrigger
                 value='collectors'
-                className='col-span-6 md:col-span-3'
+                className='col-span-6 md:col-span-2'
               >
                 Collectors
               </TabsTrigger>
-              <TabsTrigger value='zones' className='col-span-6 md:col-span-3'>
+              <TabsTrigger value='zones' className='col-span-6 md:col-span-2'>
                 Zone Management
               </TabsTrigger>
               <TabsTrigger
                 value='analytics'
-                className='col-span-6 md:col-span-3'
+                className='col-span-6 md:col-span-2'
               >
                 Analytics
               </TabsTrigger>
+              <TabsTrigger value='school' className='col-span-6 md:col-span-2'>
+                School
+              </TabsTrigger>
             </TabsList>
 
-            <TabsContent value='dashboard'>
+            <TabsContent value='dashboard' className='my-4'>
               <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                 <Card>
                   <CardHeader>
@@ -130,7 +133,7 @@ export default function OverViewLayout({
               </div>
             </TabsContent>
 
-            <TabsContent value='collectors'>
+            <TabsContent value='collectors' className='my-4'>
               {showCollectorForm ? (
                 <div className='relative flex w-full flex-1'>
                   <Card className='absolute flex w-full flex-col overflow-hidden rounded-lg border py-4'>
@@ -177,7 +180,7 @@ export default function OverViewLayout({
 
             <TabsContent value='zones'>
               <div className='relative flex w-full flex-1'>
-                <Card className='absolute flex w-full flex-col overflow-hidden rounded-lg border py-4'>
+                <Card className='absolute w-full flex-col overflow-hidden rounded-lg border py-4'>
                   <CardHeader>
                     <CardTitle>Zone Management</CardTitle>
                     <CardDescription>
@@ -191,7 +194,7 @@ export default function OverViewLayout({
               </div>
             </TabsContent>
 
-            <TabsContent value='analytics'>
+            <TabsContent value='analytics' className='my-4'>
               <div className='grid grid-cols-1 gap-6'>
                 <Card>
                   <CardHeader>
@@ -203,14 +206,20 @@ export default function OverViewLayout({
                   <CardContent>
                     <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7'>
                       <div className='col-span-12'>{bar_stats}</div>
-                      <div className='col-span-4'>{area_stats}</div>
-                      <div className='col-span-4 md:col-span-3'>
+                      <div className='col-span-12 md:col-span-12 lg:col-span-4'>
+                        {area_stats}
+                      </div>
+                      <div className='col-span-12 md:col-span-12 lg:col-span-8'>
                         {pie_stats}
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               </div>
+            </TabsContent>
+
+            <TabsContent value='school' className='my-4'>
+              <h1>Comming soon......</h1>
             </TabsContent>
           </Tabs>
         </div>
