@@ -57,15 +57,7 @@ export const navItems: NavItem[] = [
   //       icon: 'login'
   //     }
   //   ]
-  // },
-  // {
-  //   title: 'Kanban',
-  //   url: '/dashboard/kanban',
-  //   icon: 'kanban',
-  //   shortcut: ['k', 'k'],
-  //   isActive: false,
-  //   items: [] // No child items
-  // },
+  // }
   {
     title: 'User',
     url: '/dashboard/user', // Placeholder as there is no direct link for the parent
