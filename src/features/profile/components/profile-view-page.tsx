@@ -1,5 +1,4 @@
 import PageContainer from '@/components/layout/page-container';
-import ProfileCreateForm from './profile-create-form';
 import Profile from './profile-views';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';

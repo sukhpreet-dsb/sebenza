@@ -53,6 +53,26 @@ export interface GarbageList {
   notes: string;
 }
 
+export interface CollectionList {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  zone: string;
+  status: string;
+  collectionsCompleted: number;
+  joinedDate: string;
+}
+
+export interface ZoneData {
+  id: string;
+  name: string;
+  collectors: number;
+  requests: number;
+  completed: number;
+  utilization: number;
+}
+
 export interface CollectedItem {
   type: string;
   weight: number;

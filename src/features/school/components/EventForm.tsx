@@ -3,19 +3,16 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -58,13 +55,14 @@ const EventForm: React.FC<EventFormProps> = ({ address, onBack }) => {
   });
 
   const onSubmit = (data: EventFormValues) => {
+    // eslint-disable-next-line no-console
     console.log('Event submitted:', data, 'for address:', address);
     setEventCreated(true);
     toast('Collection Request Created', {
       description: 'Your garbage collection request has been submitted.',
       action: {
         label: 'Undo',
-        onClick: () => console.log('Undo')
+        onClick: () => {}
       }
     });
   };
@@ -112,21 +110,21 @@ const EventForm: React.FC<EventFormProps> = ({ address, onBack }) => {
                 />
 
                 {/* <div className='grid grid-cols-2 gap-4'> */}
-                  <FormField
-                    control={form.control}
-                    name='date'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Collection Date</FormLabel>
-                        <FormControl>
-                          <Input type='date' {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                <FormField
+                  control={form.control}
+                  name='date'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Collection Date</FormLabel>
+                      <FormControl>
+                        <Input type='date' {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                  {/* <FormField
+                {/* <FormField
                     control={form.control}
                     name='time'
                     render={({ field }) => (
@@ -225,7 +223,11 @@ const EventForm: React.FC<EventFormProps> = ({ address, onBack }) => {
                 </div>
               </div>
 
-              <Button onClick={onBack} variant='outline' className='w-full cursor-pointer'>
+              <Button
+                onClick={onBack}
+                variant='outline'
+                className='w-full cursor-pointer'
+              >
                 Back to Address Form
               </Button>
             </div>

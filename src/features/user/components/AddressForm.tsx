@@ -52,17 +52,18 @@ const AddressForm: React.FC<AddressFormProps> = ({ onAddressSubmit }) => {
       province: '',
       city: '',
       postal_code: '',
-      country:'South Africa'
+      country: 'South Africa'
     }
   });
 
   const onSubmit = (data: AddressFormValues) => {
+    // eslint-disable-next-line no-console
     console.log('Form submitted:', data);
     toast('Address Saved', {
       description: 'Your address has been successfully saved',
       action: {
         label: 'Undo',
-        onClick: () => console.log('Undo')
+        onClick: () => {}
       }
     });
     onAddressSubmit(data);

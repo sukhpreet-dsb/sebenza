@@ -45,12 +45,7 @@ interface CollectorFormProps {
   isEditing?: boolean;
 }
 
-const CollectorForm = ({
-  onSubmit,
-  onCancel,
-  defaultValues,
-  isEditing = false
-}: CollectorFormProps) => {
+const CollectorForm = ({ onSubmit, onCancel }: CollectorFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -62,8 +57,8 @@ const CollectorForm = ({
     }
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const handleSubmit = () => {
+    //values: z.infer<typeof formSchema>
     onSubmit();
   };
 

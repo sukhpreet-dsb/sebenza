@@ -31,7 +31,6 @@ import { navItems } from '@/constants/data';
 import {
   IconChevronRight,
   IconChevronsDown,
-  IconPhotoUp,
   IconLogout
 } from '@tabler/icons-react';
 import { signOut, useSession } from 'next-auth/react';
@@ -45,7 +44,7 @@ import { useMediaQuery } from '@/hooks/use-media-query';
 export default function AppSidebar() {
   const { data: session } = useSession();
   const pathname = usePathname();
-  const { state, isMobile, toggleSidebar } = useSidebar();
+  const { isMobile, toggleSidebar } = useSidebar();
   const { isOpen } = useMediaQuery();
 
   React.useEffect(() => {

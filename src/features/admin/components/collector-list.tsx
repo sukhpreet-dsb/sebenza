@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import CollectorForm from './collector-form';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { CollectionList } from 'types';
 
 // Mock collector data
 const MOCK_COLLECTORS = [
@@ -86,15 +86,16 @@ const CollectorsList = ({
   limit,
   showActions = false
 }: CollectorsListProps) => {
-  const [collectors, setCollectors] = useState(MOCK_COLLECTORS);
-  const [selectedCollector, setSelectedCollector] = useState(null);
+  const [collectors, setCollectors] =
+    useState<CollectionList[]>(MOCK_COLLECTORS);
+  const [selectedCollector, setSelectedCollector] =
+    useState<CollectionList | null>(null);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showEditDialog, setShowEditDialog] = useState(false);
-  const isMobile = useIsMobile();
 
   const displayedCollectors = limit ? collectors.slice(0, limit) : collectors;
 
-  const handleEdit = (collector) => {
+  const handleEdit = (collector: CollectionList) => {
     setSelectedCollector(collector);
     setShowEditDialog(true);
     // In a real app, this would open an edit form
@@ -103,12 +104,12 @@ const CollectorsList = ({
       description: `Editing ${collector.name}'s information`,
       action: {
         label: 'Undo',
-        onClick: () => console.log('Undo')
+        onClick: () => {}
       }
     });
   };
 
-  const handleDelete = (collector) => {
+  const handleDelete = (collector: CollectionList) => {
     setSelectedCollector(collector);
     setShowDeleteDialog(true);
   };
@@ -120,7 +121,7 @@ const CollectorsList = ({
         description: `${selectedCollector.name} has been removed`,
         action: {
           label: 'Undo',
-          onClick: () => console.log('Undo')
+          onClick: () => {}
         }
       });
       setShowDeleteDialog(false);
@@ -128,7 +129,7 @@ const CollectorsList = ({
     }
   };
 
-  const getStatusBadge = (status) => {
+  const getStatusBadge = (status: string) => {
     switch (status) {
       case 'active':
         return <Badge variant='default'>Active</Badge>;
@@ -145,10 +146,10 @@ const CollectorsList = ({
     // In a real app, this would update the collector's data
 
     toast('Collector Updated', {
-      description: `${selectedCollector.name}'s information has been updated`,
+      description: `${selectedCollector?.name}'s information has been updated`,
       action: {
         label: 'Undo',
-        onClick: () => console.log('Undo')
+        onClick: () => {}
       }
     });
     setShowEditDialog(false);
@@ -251,7 +252,7 @@ const CollectorsList = ({
           <DialogHeader>
             <DialogTitle>Edit Collector</DialogTitle>
             <DialogDescription>
-              Update the collector's information
+              Update the collectors information
             </DialogDescription>
           </DialogHeader>
           {selectedCollector && (

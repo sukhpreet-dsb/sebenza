@@ -8,16 +8,20 @@ import {
   KBarSearch
 } from 'kbar';
 import { useRouter } from 'next/navigation';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import RenderResults from './render-result';
 import useThemeSwitching from './use-theme-switching';
 
 export default function KBar({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
-  const navigateTo = (url: string) => {
-    router.push(url);
-  };
+  const navigateTo = useCallback(
+    (url: string) => {
+      router.push(url);
+    },
+    [router]
+  );
+  // Ensure dependencies are correctly set
 
   // These action are for the navigation
   const actions = useMemo(

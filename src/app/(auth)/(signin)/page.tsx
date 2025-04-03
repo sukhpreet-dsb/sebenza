@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  let stars = 3000; // Default value
+  // let stars = 3000; // Default value
 
   try {
     const response = await fetch(
@@ -18,11 +18,11 @@ export default async function Page() {
     );
 
     if (response.ok) {
-      const data = await response.json();
-      stars = data.stargazers_count || stars; // Update stars if API response is valid
+      // const data = await response.json();
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error fetching GitHub stars:', error);
   }
-  return <SignInViewPage stars={stars} />;
+  return <SignInViewPage />;
 }

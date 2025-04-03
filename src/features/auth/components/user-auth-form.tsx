@@ -16,7 +16,6 @@ import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
-import GithubSignInButton from './github-auth-button';
 import {
   Card,
   CardContent,
@@ -25,8 +24,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { AlertCircle, Lock, Mail } from 'lucide-react';
-import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 
@@ -175,7 +172,7 @@ export default function UserAuthForm() {
           </CardContent>
           <CardFooter className='flex justify-center'>
             <div className='text-muted-foreground text-sm'>
-              Don't have an account?
+              Dont have an account?
               <Link href='/sign-up' className='text-primary hover:underline'>
                 Sign up
               </Link>

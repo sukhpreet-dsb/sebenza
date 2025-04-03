@@ -38,6 +38,7 @@ import {
 } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import { Progress } from '@/components/ui/progress';
+import { ZoneData } from 'types';
 
 // Mock zone data
 const MOCK_ZONES = [
@@ -124,15 +125,15 @@ const MOCK_ZONES = [
 ];
 
 const ZoneManagement = () => {
-  const [zones, setZones] = useState(MOCK_ZONES);
+  const [zones, setZones] = useState<ZoneData[]>(MOCK_ZONES);
   const [showAddZoneDialog, setShowAddZoneDialog] = useState(false);
   const [newZoneName, setNewZoneName] = useState('');
-  const [selectedZone, setSelectedZone] = useState(null);
+  const [selectedZone, setSelectedZone] = useState<ZoneData | null>(null);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(5);
 
   // Filter state
   const [nameFilter, setNameFilter] = useState('');
@@ -156,13 +157,13 @@ const ZoneManagement = () => {
         description: `${newZoneName} has been added successfully`,
         action: {
           label: 'Undo',
-          onClick: () => console.log('Undo')
+          onClick: () => {}
         }
       });
     }
   };
 
-  const handleDelete = (zone) => {
+  const handleDelete = (zone: ZoneData) => {
     setSelectedZone(zone);
     setShowDeleteDialog(true);
   };
@@ -174,7 +175,7 @@ const ZoneManagement = () => {
         description: `${selectedZone.name} has been removed`,
         action: {
           label: 'Undo',
-          onClick: () => console.log('Undo')
+          onClick: () => {}
         }
       });
       setShowDeleteDialog(false);
@@ -189,7 +190,7 @@ const ZoneManagement = () => {
     setCurrentPage(1);
   };
 
-  const getUtilizationColor = (utilization) => {
+  const getUtilizationColor = (utilization: number) => {
     if (utilization >= 90) return 'bg-red-500';
     if (utilization >= 70) return 'bg-yellow-500';
     return 'bg-green-500';
@@ -247,7 +248,7 @@ const ZoneManagement = () => {
   const currentItems = filteredZones.slice(indexOfFirstItem, indexOfLastItem);
 
   // Handle page change
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = (pageNumber: number) => {
     // Ensure we don't go beyond available pages if filters reduce item count
     const maxPage = Math.max(1, totalPages);
     setCurrentPage(Math.min(pageNumber, maxPage));

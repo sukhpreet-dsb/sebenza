@@ -1,28 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -47,46 +37,6 @@ const formSchema = z.object({
 });
 
 export type AddressFormValues = z.infer<typeof formSchema>;
-
-const indianStates = [
-  'Andhra Pradesh',
-  'Arunachal Pradesh',
-  'Assam',
-  'Bihar',
-  'Chhattisgarh',
-  'Goa',
-  'Gujarat',
-  'Haryana',
-  'Himachal Pradesh',
-  'Jharkhand',
-  'Karnataka',
-  'Kerala',
-  'Madhya Pradesh',
-  'Maharashtra',
-  'Manipur',
-  'Meghalaya',
-  'Mizoram',
-  'Nagaland',
-  'Odisha',
-  'Punjab',
-  'Rajasthan',
-  'Sikkim',
-  'Tamil Nadu',
-  'Telangana',
-  'Tripura',
-  'Uttar Pradesh',
-  'Uttarakhand',
-  'West Bengal',
-  'Andaman and Nicobar Islands',
-  'Chandigarh',
-  'Dadra and Nagar Haveli and Daman and Diu',
-  'Delhi',
-  'Jammu and Kashmir',
-  'Ladakh',
-  'Lakshadweep',
-  'Puducherry'
-];
-
 interface AddressFormProps {
   onAddressSubmit: (address: AddressFormValues) => void;
 }
@@ -106,12 +56,12 @@ const AddressForm: React.FC<AddressFormProps> = ({ onAddressSubmit }) => {
   });
 
   const onSubmit = (data: AddressFormValues) => {
-    console.log('Form submitted:', data);
+    // console.log('Form submitted:', data);
     toast('Address Saved', {
       description: 'Your address has been successfully saved',
       action: {
         label: 'Undo',
-        onClick: () => console.log('Undo')
+        onClick: () => {}
       }
     });
     onAddressSubmit(data);
@@ -142,7 +92,10 @@ const AddressForm: React.FC<AddressFormProps> = ({ onAddressSubmit }) => {
                     <FormItem>
                       <FormLabel>School Name</FormLabel>
                       <FormControl>
-                        <Input placeholder='Bridge House Prep School' {...field} />
+                        <Input
+                          placeholder='Bridge House Prep School'
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

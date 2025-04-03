@@ -23,7 +23,6 @@ export default function OverViewLayout({
   area_stats,
   collector_list
 }: {
-  sales: React.ReactNode;
   pie_stats: React.ReactNode;
   bar_stats: React.ReactNode;
   area_stats: React.ReactNode;
@@ -43,7 +42,7 @@ export default function OverViewLayout({
       description: `Collector added successfully`,
       action: {
         label: 'Undo',
-        onClick: () => console.log('Undo')
+        onClick: () => {}
       }
     });
   };

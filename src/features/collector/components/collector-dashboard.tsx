@@ -16,27 +16,7 @@ import {
   TableCell
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter
-} from '@/components/ui/dialog';
-import {
-  Trash2,
-  Calendar,
-  Clock,
-  MapPin,
-  Weight,
-  Save,
-  Search,
-  Filter
-} from 'lucide-react';
-import { toast } from 'sonner';
+import { Calendar, MapPin, Weight, Search, Filter } from 'lucide-react';
 import {
   Select,
   SelectContent,
@@ -54,7 +34,6 @@ import {
   PaginationPrevious
 } from '@/components/ui/pagination';
 import { GarbageList } from 'types';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import CollectionDetailsDialog from './collection-detail-dialog';
 
 // Mock data for demonstration
@@ -142,9 +121,7 @@ const mockEvents = [
 ];
 
 const CollectorDashboard = () => {
-  const [selectedEvent, setSelectedEvent] = useState<GarbageList | null>(null);
-  const [events, setEvents] = useState<GarbageList[]>(mockEvents);
-  const [selectedGarbageType, setSelectedGarbageType] = useState<string>('');
+  const [events] = useState<GarbageList[]>(mockEvents);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -169,65 +146,65 @@ const CollectorDashboard = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredEvents.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handleAccept = (id: number) => {
-    setEvents(
-      events.map((event) =>
-        event.id === id ? { ...event, status: 'accepted' } : event
-      )
-    );
-    toast('Collection Request Accepted', {
-      description: 'You have accepted the garbage collection request',
-      action: {
-        label: 'Undo',
-        onClick: () => console.log('Undo')
-      }
-    });
-    setSelectedEvent(null);
-  };
+  // const handleAccept = (id: number) => {
+  //   setEvents(
+  //     events.map((event) =>
+  //       event.id === id ? { ...event, status: 'accepted' } : event
+  //     )
+  //   );
+  //   toast('Collection Request Accepted', {
+  //     description: 'You have accepted the garbage collection request',
+  //     action: {
+  //       label: 'Undo',
+  //       onClick: () => console.log('Undo')
+  //     }
+  //   });
+  //   setSelectedEvent(null);
+  // };
 
-  const handleReject = (id: number) => {
-    setEvents(
-      events.map((event) =>
-        event.id === id ? { ...event, status: 'rejected' } : event
-      )
-    );
-    toast('Collection Request Rejected', {
-      description: 'You have rejected the garbage collection request.',
-      action: {
-        label: 'Undo',
-        onClick: () => console.log('Undo')
-      }
-    });
-    setSelectedEvent(null);
-  };
+  // const handleReject = (id: number) => {
+  //   setEvents(
+  //     events.map((event) =>
+  //       event.id === id ? { ...event, status: 'rejected' } : event
+  //     )
+  //   );
+  //   toast('Collection Request Rejected', {
+  //     description: 'You have rejected the garbage collection request.',
+  //     action: {
+  //       label: 'Undo',
+  //       onClick: () => console.log('Undo')
+  //     }
+  //   });
+  //   setSelectedEvent(null);
+  // };
 
-  const handleSaveGarbageType = () => {
-    if (!selectedGarbageType) {
-      toast('Please select a garbage type', {
-        description: 'You need to select a garbage type before saving'
-      });
-      return;
-    }
+  // const handleSaveGarbageType = () => {
+  //   if (!selectedGarbageType) {
+  //     toast('Please select a garbage type', {
+  //       description: 'You need to select a garbage type before saving'
+  //     });
+  //     return;
+  //   }
 
-    setEvents(
-      events.map((event) =>
-        event.id === selectedEvent?.id
-          ? { ...event, garbageType: selectedGarbageType }
-          : event
-      )
-    );
+  //   setEvents(
+  //     events.map((event) =>
+  //       event.id === selectedEvent?.id
+  //         ? { ...event, garbageType: selectedGarbageType }
+  //         : event
+  //     )
+  //   );
 
-    toast('Garbage Type Saved', {
-      description: `Garbage type set to ${selectedGarbageType}`,
-      action: {
-        label: 'Undo',
-        onClick: () => console.log('Undo')
-      }
-    });
+  //   toast('Garbage Type Saved', {
+  //     description: `Garbage type set to ${selectedGarbageType}`,
+  //     action: {
+  //       label: 'Undo',
+  //       onClick: () => console.log('Undo')
+  //     }
+  //   });
 
-    setSelectedEvent(null);
-    setSelectedGarbageType('');
-  };
+  //   setSelectedEvent(null);
+  //   setSelectedGarbageType('');
+  // };
 
   const getStatusBadge = (status: string) => {
     switch (status) {

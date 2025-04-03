@@ -1,5 +1,5 @@
 import { useState, useEffect, JSX } from 'react';
-import { Trash2, Save, Plus } from 'lucide-react';
+import { Trash2, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -75,13 +75,6 @@ const CollectionDetailsDialog = ({
 
   const handleOpenDialog = () => {
     setSelectedEvent(event);
-    setCollectedItems([]);
-  };
-
-  const handleCloseDialog = () => {
-    setSelectedEvent(null);
-    setSelectedGarbageType('');
-    setWeight('');
     setCollectedItems([]);
   };
 
