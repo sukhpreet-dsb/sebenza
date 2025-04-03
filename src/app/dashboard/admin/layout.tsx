@@ -28,7 +28,6 @@ export default function OverViewLayout({
   bar_stats: React.ReactNode;
   area_stats: React.ReactNode;
   collector_list: React.ReactNode;
-  collection_analytics: React.ReactNode;
 }) {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showCollectorForm, setShowCollectorForm] = useState(false);
