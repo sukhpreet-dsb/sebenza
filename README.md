@@ -92,7 +92,7 @@ src/
 Clone the repo:
 
 ```
-git clone https://github.com/Kiranism/next-shadcn-dashboard-starter.git
+git clone .....
 ```
 
 - `pnpm install` ( we have legacy-peer-deps=true added in the .npmrc)
